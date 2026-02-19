@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 # Configuration
 BASE_URL = "https://ikman.lk/en/ads/sri-lanka/vehicles"
-OUTPUT_FILE = "vehicle_data_large.csv"
+OUTPUT_FILE = "data/raw/vehicle_data_scraped.csv"
 TARGET_COUNT = 20000
 DELAY_SECONDS = 0.3
 

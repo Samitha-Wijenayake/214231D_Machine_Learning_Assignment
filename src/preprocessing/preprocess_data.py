@@ -92,4 +92,4 @@ def preprocess_vehicle_data(input_file, output_file):
     print(f"Final shape: {df.shape}")
 
 if __name__ == "__main__":
-    preprocess_vehicle_data('vehicle_data_withoutprocessed.csv', 'vehicle_data_withprocessed.csv')
+    preprocess_vehicle_data('data/raw/vehicle_data_withoutprocessed.csv', 'data/processed/vehicle_data_withprocessed.csv')
