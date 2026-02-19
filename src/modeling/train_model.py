@@ -77,6 +77,11 @@ def train_and_evaluate(input_file):
     
     best_model = random_search.best_estimator_
     print(f"Best Parameters: {random_search.best_params_}")
+
+    # Save the model
+    model_path = os.path.join('outputs', 'model.json')
+    best_model.save_model(model_path)
+    print(f"Model saved to {model_path}")
     
     # Predictions
     y_pred = best_model.predict(X_test)
