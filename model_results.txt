@@ -3,7 +3,7 @@
     --------------------------
     Best Parameters: {'subsample': 0.9, 'n_estimators': 200, 'max_depth': 6, 'learning_rate': 0.05, 'colsample_bytree': 0.9}
     
-    RMSE: 9,451,735.37
-    MAE: 4,129,676.97
-    R2 Score: 0.6883
+    RMSE: 8,500,473.59
+    MAE: 2,462,564.59
+    R2 Score: 0.7956
     
