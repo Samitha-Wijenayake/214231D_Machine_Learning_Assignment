@@ -29,11 +29,30 @@ def preprocess_vehicle_data(input_file, output_file):
         df['Mileage'] = pd.to_numeric(df['Mileage'], errors='coerce')
         df.dropna(subset=['Mileage'], inplace=True)
     
-    # 4. Feature Engineering: Extract Brand from Title
-    print("Extracting Brand from Title...")
-    df['Brand'] = df['Title'].astype(str).apply(lambda x: x.split()[0] if len(x.split()) > 0 else 'Unknown')
-    
-    # 5. Clean Feature: Year
+    # 4. Feature Engineering: Extract Brand and Model from Title
+    print("Extracting Brand and Model from Title...")
+    def extract_brand_and_model(title):
+        parts = str(title).split()
+        brand = parts[0] if len(parts) > 0 else 'Unknown'
+        
+        # Extract model
+        model = 'Unknown'
+        if len(parts) > 1:
+            # Handle known multi-word models
+            title_lower = str(title).lower()
+            if 'land cruiser' in title_lower:
+                model = 'Land Cruiser'
+            elif 'range rover' in title_lower:
+                model = 'Range Rover'
+            elif 'wagon r' in title_lower:
+                model = 'Wagon R'
+            elif 'town ace' in title_lower:
+                model = 'Town Ace'
+            else:
+                model = parts[1] # Usually the second word is the model
+        return pd.Series([brand, model])
+
+    df[['Brand', 'Model']] = df['Title'].apply(extract_brand_and_model)
     print("Cleaning Year...")
     if 'Year' in df.columns:
         mode_year = df['Year'].mode()[0]
@@ -68,8 +87,9 @@ def preprocess_vehicle_data(input_file, output_file):
         print(f"Data augmented. New count: {len(df)}")
     
     # 6. Basic Encoding
-    print("Encoding Brand...")
+    print("Encoding Brand and Model...")
     df['Brand_Encoded'] = df['Brand'].astype('category').cat.codes
+    df['Model_Encoded'] = df['Model'].astype('category').cat.codes
     
     print("Encoding Location...")
     if 'Location' in df.columns:
