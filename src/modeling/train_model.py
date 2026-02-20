@@ -15,6 +15,29 @@ def train_and_evaluate(input_file):
     print(f"Loading data from {input_file}...")
     df = pd.read_csv(input_file)
     
+    # --- SAVE MAPPINGS FOR WEB APP ---
+    import json
+    mappings = {}
+    
+    # 1. Brand Mapping
+    if 'Brand' in df.columns and 'Brand_Encoded' in df.columns:
+        # Create dictionary: {"Toyota": 1, "Honda": 2, ...}
+        # Use simple aggregation to get unique pairs
+        brand_map = df[['Brand', 'Brand_Encoded']].drop_duplicates().set_index('Brand')['Brand_Encoded'].to_dict()
+        # Convert int64 to int for JSON serialization
+        mappings['Brand'] = {k: int(v) for k, v in brand_map.items()}
+    
+    # 2. Location Columns
+    # Identify Loc_* columns
+    loc_cols = [c for c in df.columns if c.startswith('Loc_')]
+    mappings['Location_Columns'] = loc_cols
+    
+    # Save mappings
+    with open(os.path.join('outputs', 'mappings.json'), 'w') as f:
+        json.dump(mappings, f, indent=4)
+    print("Mappings saved to outputs/mappings.json")
+    # ---------------------------------
+    
     # Feature Selection
     # Drop target and non-feature columns
     # We use Brand_Encoded and Location Encoded columns

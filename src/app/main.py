@@ -105,7 +105,7 @@ valid_locations.sort()
 
 # Header
 st.markdown("<h1 style='text-align: center; margin-bottom: 0;'>🚗 Sri Lanka Vehicle Price Predictor</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #666; font-size: 1.1rem; margin-bottom: 3rem;'>AI-powered market valuation for your vehicle</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #666; font-size: 1.1rem; margin-bottom: 3rem;'>AI and ML powered market valuation for your vehicle</p>", unsafe_allow_html=True)
 
 
 # Create main layout with 3 columns to center the content beautifully
@@ -131,7 +131,7 @@ with main_col:
             selected_mileage = st.number_input("Mileage (km)", min_value=0, max_value=500000, value=45000, step=1000)
 
     st.markdown("<br>", unsafe_allow_html=True)
-    predict_btn = st.button("Generate AI Price Estimate 🎯", use_container_width=True)
+    predict_btn = st.button("Generate Price Estimate 🎯", use_container_width=True)
 
 # Inference logic
 if predict_btn:
