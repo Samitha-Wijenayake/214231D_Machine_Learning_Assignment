@@ -3,7 +3,7 @@ Tab 1: Price Prediction — input form, prediction, SHAP local explanation.
 """
 import streamlit as st
 import pandas as pd
-import pickle
+import shap
 import plotly.graph_objects as go
 from app.helpers import (
     has_real_options, get_options, clean_name,
@@ -103,9 +103,7 @@ def render(model, mappings, feature_names, test_metrics):
                     "**Green bars** pushed the price **up**, **red bars** pulled it **down**."
                 )
                 try:
-                    with open("models/shap_explainer.pkl", "rb") as f:
-                        explainer = pickle.load(f)
-
+                    explainer = shap.TreeExplainer(model)
                     shap_values = explainer(df_input)
                     vals = shap_values[0].values
                     feats = shap_values[0].feature_names if shap_values[0].feature_names is not None else feature_names
