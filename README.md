@@ -1,13 +1,12 @@
-﻿## Live Demo
+﻿# Sri Lanka Vehicle Price Predictor (Machine Learning Assignment)
+
+This repository contains a complete Machine Learning pipeline to predict vehicle prices in Sri Lanka. The project uses scraped data from `ikman.lk` and employs an **XGBoost Regressor** along with a **Streamlit** front-end. Optuna was used for hyperparameter tuning, and early stopping was implemented on the validation set.
+It also extensively uses **SHAP** (`TreeExplainer`) for global and local model explainability.
+
+## Live Demo
 
 **Try the app here:** 
 [https://srilankavehiclepricepredictor.streamlit.app/](https://srilankavehiclepricepredictor.streamlit.app/)
-
-# Sri Lanka Vehicle Price Predictor (Machine Learning Assignment)
-
-This repository contains a complete end-to-end Machine Learning pipeline to predict used vehicle prices in Sri Lanka. The project conforms to the assignment guidelines, utilizing scraped data from `ikman.lk` and employing an **XGBoost Regressor** along with a **Streamlit** front-end. Optuna was used for hyperparameter tuning, and early stopping was implemented on the validation set.
-
-It also extensively uses **SHAP** (`TreeExplainer`) for global and local model explainability.
 
 ## Project Structure
 
